@@ -1,30 +1,42 @@
 [
-    {
-      "id": 1,
-      "bateria": 85,
-      "localizacao": { "lat": -23.55052, "lng": -46.63331 },
-      "precoPorMinuto": 0.75,
-      "status": "disponivel"
-    },
-    {
-      "id": 2,
-      "bateria": 42,
-      "localizacao": { "lat": -23.55110, "lng": -46.63250 },
-      "precoPorMinuto": 0.70,
-      "status": "disponivel"
-    },
-    {
-      "id": 3,
-      "bateria": 60,
-      "localizacao": { "lat": -23.54980, "lng": -46.63400 },
-      "precoPorMinuto": 0.80,
-      "status": "reservado"
-    },
-    {
-      "id": 4,
-      "bateria": 95,
-      "localizacao": { "lat": -23.55190, "lng": -46.63500 },
-      "precoPorMinuto": 0.90,
-      "status": "em_uso"
-    }
-  ]
+  {
+    "id": 1,
+    "bateria": 85,
+    "localizacao": { "lat": -23.55052, "lng": -46.63331 },
+    "precoPorMinuto": 0.75,
+    "status": "disponivel",
+    "imagem": "patinete1",
+    "modelo": "Xiaomi Mi Electric",
+    "cor": "Preto"
+  },
+  {
+    "id": 2,
+    "bateria": 42,
+    "localizacao": { "lat": -23.55110, "lng": -46.63250 },
+    "precoPorMinuto": 0.70,
+    "status": "disponivel",
+    "imagem": "patinete2",
+    "modelo": "Ninebot E22",
+    "cor": "Branco"
+  },
+  {
+    "id": 3,
+    "bateria": 60,
+    "localizacao": { "lat": -23.54980, "lng": -46.63400 },
+    "precoPorMinuto": 0.80,
+    "status": "reservado",
+    "imagem": "patinete3",
+    "modelo": "Hiboy S2 Pro",
+    "cor": "Vermelho"
+  },
+  {
+    "id": 4,
+    "bateria": 95,
+    "localizacao": { "lat": -23.55190, "lng": -46.63500 },
+    "precoPorMinuto": 0.90,
+    "status": "em_uso",
+    "imagem": "patinete4",
+    "modelo": "Segway Max",
+    "cor": "Azul"
+  }
+]
