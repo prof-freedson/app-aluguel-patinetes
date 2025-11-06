@@ -16,6 +16,13 @@ export default function Teste() {
           </Text>
         </TouchableOpacity>
       </Link>
+
+      {/* Botão para abrir a tela de cadastro */}
+      <Link href="/screens/cadastro" asChild>
+        <TouchableOpacity className="mt-4 bg-green-500 px-6 py-3 rounded-lg">
+          <Text className="text-white font-bold text-lg">Cadastrar</Text>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 }
