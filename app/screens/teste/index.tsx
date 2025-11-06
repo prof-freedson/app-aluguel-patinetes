@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+import { Stack } from "expo-router";
+
+export default function RootLayout() {
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" options={{ title: "App" }} />
+      <Stack.Screen name="screens/teste/index" options={{ title: "Teste" }} />
+      <Stack.Screen name="configuracoes-usuario" options={{ title: "Configurações" }} />
+    </Stack>
+=======
 import '../../styles/global.css'
 import { Text, View, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
@@ -24,5 +35,6 @@ export default function Teste() {
         </TouchableOpacity>
       </Link>
     </View>
+>>>>>>> upstream
   );
 }
