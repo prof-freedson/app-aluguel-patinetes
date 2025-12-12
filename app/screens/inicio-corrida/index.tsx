@@ -1,5 +1,5 @@
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   SafeAreaView,
@@ -9,8 +9,37 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useLocation } from '@/hooks/useLocation';
+import { LocationPermissionModal } from '../teste/components/location/LocationPermissionModal';
 
 const RideStartScreen = () => {
+  const [showLocationModal, setShowLocationModal] = useState(false);
+  const { location, hasPermission, startTracking } = useLocation();
+
+  useEffect(() => {
+    // Se não tiver permissão, mostrar modal
+    if (!hasPermission) {
+      setShowLocationModal(true);
+    }
+  }, [hasPermission]);
+
+  const handleStartRide = async () => {
+    // Verificar se tem permissão
+    if (!hasPermission) {
+      setShowLocationModal(true);
+      return;
+    }
+
+    // Iniciar rastreamento de localização
+    await startTracking((location) => {
+      console.log('Localização atualizada durante corrida:', location);
+      // Aqui você pode salvar a localização no Supabase ou fazer qualquer outra ação
+    });
+
+    // Iniciar a corrida (você implementará isso)
+    console.log('Corrida iniciada com localização:', location);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <StatusBar barStyle="dark-content" />
@@ -71,14 +100,34 @@ const RideStartScreen = () => {
             {/* Divider */}
             <View className="h-px bg-gray-200 my-5" />
 
+            {/* Location Status */}
+            <View className="bg-blue-50 rounded-lg p-4 mb-5">
+              <View className="flex-row items-center">
+                <Ionicons 
+                  name={hasPermission ? "location" : "location-outline"} 
+                  size={18} 
+                  color={hasPermission ? "#10b981" : "#ef4444"} 
+                />
+                <Text className="ml-2 text-sm font-medium text-gray-700">
+                  Localização: {hasPermission ? '✓ Ativa' : '✗ Desativa'}
+                </Text>
+              </View>
+              {location && (
+                <Text className="text-xs text-gray-500 mt-2">
+                  Lat: {location.latitude.toFixed(4)}, Lng: {location.longitude.toFixed(4)}
+                </Text>
+              )}
+            </View>
+
             {/* Buttons */}
             <View className="mt-auto space-y-3">
               <TouchableOpacity 
-                className="bg-blue-500 rounded-xl py-4 px-4 active:scale-95"
+                className={`${hasPermission ? 'bg-blue-500' : 'bg-orange-500'} rounded-xl py-4 px-4 active:scale-95`}
                 activeOpacity={0.8}
+                onPress={handleStartRide}
               >
-                <Text className=" text-white text-lg font-semibold text-center">
-                  Iniciar Corrida
+                <Text className="text-white text-lg font-semibold text-center">
+                  {hasPermission ? 'Iniciar Corrida' : 'Ativar Localização e Iniciar'}
                 </Text>
               </TouchableOpacity>
               
@@ -94,6 +143,14 @@ const RideStartScreen = () => {
           </View>
         </View>
       </ScrollView>
+
+      {/* Modal de Permissão de Localização */}
+      <LocationPermissionModal 
+        visible={showLocationModal}
+        onDismiss={() => setShowLocationModal(false)}
+        message="Precisamos acessar sua localização para rastrear a corrida do patinete"
+        enableOnClose={true}
+      />
     </SafeAreaView>
   );
 };
